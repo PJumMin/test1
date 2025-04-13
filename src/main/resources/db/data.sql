@@ -6,13 +6,8 @@ insert into user_tb(username, password, created_at)
 values ('love', '1234', now());
 
 insert into board_tb(title, content)
-values ('제목1', '내용1');
+values ('필독사항', '내용1');
 insert into board_tb(title, content)
-values ('제목2', '내용2');
+values ('어서오세요', '내용2');
 insert into board_tb(title, content)
-values ('제목3', '내용3');
-insert into board_tb(title, content)
-values ('제목4', '내용4');
-insert into board_tb(title, content)
-values ('제목5', '내용5');
-
+values ('공지사항', '내용3');

@@ -1,6 +1,8 @@
 package com.example.loginapp.board;
 
+import com.example.loginapp.user.User;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,4 +17,14 @@ public class Board {
     private String title;
     private String content;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user; // ORM
+
+    @Builder
+    public Board(Integer id, String title, String content, User user) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.user = user;
+    }
 }

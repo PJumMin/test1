@@ -15,14 +15,14 @@ public class UserRepository {
     }
 
     // NativeQuery
-    public User findByUsername(String username) {
+    public User findByUsername2(String username) {
         Query query = em.createNativeQuery("select * from user_tb where username = ?", User.class);
         query.setParameter(1, username);
         return (User) query.getSingleResult();
     }
 
     // CreateQuery
-    public User findByUsername2(String username) {
+    public User findByUsername(String username) {
 
         try {
             return em.createQuery("select u from User u where u.username = :username", User.class)

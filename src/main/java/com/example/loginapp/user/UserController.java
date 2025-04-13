@@ -49,18 +49,17 @@ public class UserController {
     // UpdatePage
     @GetMapping("/update-form")
     public String updateForm() {
+        User sessionuser = (User) session.getAttribute("sessionUser");
+        if (sessionuser == null) throw new RuntimeException("로그인 후 사용해주세요.");
         return "user/update-form";
     }
 
     // Update
     @PostMapping("/update")
     public String update(UserRequest.UpdateDTO reqDTO) {
-        System.out.println("1");
         User sessionUser = (User) session.getAttribute("model");
-        System.out.println("2");
-        System.out.println(sessionUser);
+        if (sessionUser == null) throw new RuntimeException("로그인 후 사용해주세요.");
         User userPS = userService.update(reqDTO, sessionUser.getId());
-        System.out.println("3");
         session.setAttribute("model", userPS);
         return "redirect:/";
     }
