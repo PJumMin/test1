@@ -13,4 +13,9 @@ public class UserService {
     public void join(UserRequest.JoinDTO reqDTO) {
         userRepository.save(reqDTO.toEntity());
     }
+
+    public User login(UserRequest.LoginDTO reqDTO) {
+        User user = userRepository.findByUsername2(reqDTO.getUsername());
+        return user;
+    }
 }
