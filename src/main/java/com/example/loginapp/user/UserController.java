@@ -46,4 +46,22 @@ public class UserController {
         return "redirect:/";
     }
 
+    // UpdatePage
+    @GetMapping("/update-form")
+    public String updateForm() {
+        return "user/update-form";
+    }
+
+    // Update
+    @PostMapping("/update")
+    public String update(UserRequest.UpdateDTO reqDTO) {
+        System.out.println("1");
+        User sessionUser = (User) session.getAttribute("model");
+        System.out.println("2");
+        System.out.println(sessionUser);
+        User userPS = userService.update(reqDTO, sessionUser.getId());
+        System.out.println("3");
+        session.setAttribute("model", userPS);
+        return "redirect:/";
+    }
 }

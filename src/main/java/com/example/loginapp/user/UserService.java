@@ -18,4 +18,12 @@ public class UserService {
         User user = userRepository.findByUsername2(reqDTO.getUsername());
         return user;
     }
+
+    @Transactional
+    public User update(UserRequest.UpdateDTO reqDTO, Integer sessionId) {
+        User userPS = userRepository.findById(sessionId);
+
+        userPS.update(reqDTO.getPassword());
+        return userPS;
+    }
 }

@@ -22,4 +22,10 @@ public class UserRequest {
         private String username;
         private String password;
     }
+
+    @Data
+    public static class UpdateDTO {
+        private String username;
+        private String password;
+    }
 }

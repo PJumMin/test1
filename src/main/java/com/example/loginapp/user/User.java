@@ -30,4 +30,9 @@ public class User {
         this.password = password;
         this.createdAt = createdAt;
     }
+
+    public void update(String password) {
+        this.password = password;
+    }
+    
 }

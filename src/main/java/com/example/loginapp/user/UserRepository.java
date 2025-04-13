@@ -23,9 +23,17 @@ public class UserRepository {
 
     // CreateQuery
     public User findByUsername2(String username) {
-        return em.createQuery("select u from User u where u.username = :username", User.class)
-                .setParameter("username", username)
-                .getSingleResult();
+
+        try {
+            return em.createQuery("select u from User u where u.username = :username", User.class)
+                    .setParameter("username", username)
+                    .getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
+    public User findById(Integer sessionId) {
+        return em.find(User.class, sessionId);
+    }
 }
