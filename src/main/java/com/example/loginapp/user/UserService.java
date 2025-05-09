@@ -1,6 +1,7 @@
 package com.example.loginapp.user;
 
 import lombok.RequiredArgsConstructor;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,8 +12,9 @@ public class UserService {
 
     @Transactional
     public void join(UserRequest.JoinDTO reqDTO) {
-        // 1. 동일한 username이 있는지 확인
-        if (reqDTO.getUsername().equals(reqDTO.getUsername())) throw new RuntimeException("동일한 아이디가 있습니다.");
+
+        String encPassword = BCrypt.hashpw(reqDTO.getPassword(), BCrypt.gensalt());
+        reqDTO.setPassword(encPassword);
 
         userRepository.save(reqDTO.toEntity());
     }
@@ -23,9 +25,10 @@ public class UserService {
         // 1. 등록된 username이 있는지 확인
         if (user == null) throw new RuntimeException("아이디 혹은 비밀번호가 틀렸습니다.");
         // 2. password가 맞는지 확인
-        if (!user.getPassword().equals(reqDTO.getPassword())) {
-            throw new RuntimeException("아이디 혹은 비밀번호가 틀렸습니다.");
-        }
+        Boolean isSame = BCrypt.checkpw(reqDTO.getPassword(), user.getPassword());
+        if (!isSame) throw new RuntimeException("아이디 혹은 비밀번호가 틀렸습니다.");
+        System.out.println(user);
+
         return user;
     }
 

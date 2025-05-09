@@ -1,9 +1,9 @@
 insert into user_tb(username, password, created_at)
-values ('ssar', '1234', now());
+values ('ssar', '$2a$10$nncpGtVOH4/HjHpykhnAAuE/mUC6y7CqjfPvrapWGtDj9QabaAgPi', now());
 insert into user_tb(username, password, created_at)
-values ('cos', '1234', now());
+values ('cos', '$2a$10$nncpGtVOH4/HjHpykhnAAuE/mUC6y7CqjfPvrapWGtDj9QabaAgPi', now());
 insert into user_tb(username, password, created_at)
-values ('love', '1234', now());
+values ('love', '$2a$10$nncpGtVOH4/HjHpykhnAAuE/mUC6y7CqjfPvrapWGtDj9QabaAgPi', now());
 
 insert into board_tb(title, content)
 values ('필독사항', '내용1');
